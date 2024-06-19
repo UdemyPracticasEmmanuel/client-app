@@ -20,7 +20,9 @@ public class AppController {
         System.out.println("mensaje guardado: " + message);
         return message;
     }
-
+/*
+* Función para autenticarse y obtener token, con el cuál poder acceder a los endpoints '/list' y '/create'
+* */
     public Map<String, String> authorized(@RequestParam String code){
         return Collections.singletonMap("code", code);
     }
