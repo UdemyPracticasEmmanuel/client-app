@@ -23,6 +23,7 @@ public class AppController {
 /*
 * Función para autenticarse y obtener token, con el cuál poder acceder a los endpoints '/list' y '/create'
 * */
+    @GetMapping("/authorized")
     public Map<String, String> authorized(@RequestParam String code){
         return Collections.singletonMap("code", code);
     }
