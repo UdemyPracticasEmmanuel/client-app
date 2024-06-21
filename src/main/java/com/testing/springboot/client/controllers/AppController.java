@@ -1,6 +1,8 @@
 package com.testing.springboot.client.controllers;
 
 import com.testing.springboot.client.models.Message;
+import com.testing.springboot.client.models.PokeDex;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -13,6 +15,15 @@ public class AppController {
     @GetMapping("/list")
     public List<Message> list(){
         return Collections.singletonList(new Message("Test list"));
+    }
+    @GetMapping("/pokemon/{requestedId}")
+    private ResponseEntity<PokeDex> findById(@PathVariable String requestedId) {
+        if (requestedId.equals("ditto")) {
+            PokeDex pokeDex = new PokeDex("ditto");
+            return ResponseEntity.ok(pokeDex);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/create")
