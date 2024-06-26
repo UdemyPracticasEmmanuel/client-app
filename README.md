@@ -11,7 +11,9 @@
   <li>Ingresar las credenciales usuario: 'admin', password: '12345' , el usuario será redirigido al siguiente endpoint: <br>
   <img width="477" alt="img_2" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/10555d4a-e63e-4319-8653-fcd0812f84f2">
   </li>
-  <li>Con este código, se pueden hacer pruebas de seguridad en Postman con la url http://127.0.0.1:9000/oauth2/token con POST, y obtener el 'access_token' para poder acceder a otros endpoints:<br>
+  <li>Con este código, se pueden hacer pruebas de seguridad en Postman con la url http://127.0.0.1:9000/oauth2/token mediante POST, estableciendo Authorization Type: 'Basic Auth', con username 'client-app' y password '12345' <br>
+    <img width="802" alt="img_7" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/947c3009-7220-4f52-9d1b-7e3b167edc91"><br>
+    y así obtener el 'access_token' para poder acceder a otros endpoints:<br>
   <img width="752" alt="img_3_unmarked" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/55737ddb-fb64-43d4-8b71-626ee9ca1aa8"><br>
     <b>Nota: este token solo estará activo por 5 min</b>
   </li>
