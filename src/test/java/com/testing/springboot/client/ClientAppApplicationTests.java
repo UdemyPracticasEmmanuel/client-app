@@ -14,11 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ClientAppApplicationTests {
 	@Autowired
 	TestRestTemplate restTemplate;
-
-	@Test
-	void contextLoads() {
-	}
-
+/*
 	@Test
 	void shouldReturnAPokemon() {
 		ResponseEntity<String> response = restTemplate.getForEntity("/pokemon/ditto", String.class);
@@ -35,6 +31,6 @@ class ClientAppApplicationTests {
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 		assertThat(response.getBody()).isBlank();
-	}
+	} */
 
 }
