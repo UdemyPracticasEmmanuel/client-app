@@ -16,11 +16,8 @@
     <b>Nota: este token solo estará activo por 5 min</b>
   </li>
   <li>
-    Hacer pruebas con el endpoint http://127.0.0.1:8080/list y GET seleccionando 'Bearer Token' y seteando el Token recién generado:<br>
-    <img width="516" alt="img_4" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/f4a43451-2052-414c-b1a4-1456b5280845">
-  </li>
-  <li>
-    Hacer mismos pasos para el endpoint http://127.0.0.1:8080/create con POST: <br>
-    <img width="505" alt="img_5" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/8d1626ab-238c-4f94-b618-3b923b2a6381">
+    Hacer pruebas con el endpoint http://127.0.0.1:8080/pokemon/ditto (o cualquiera de los pokemon de 1era generación: bulbasaur, charmander, etc.) y GET seleccionando 'Bearer Token' y seteando el Token recién generado:<br>
+    <img width="721" alt="img_6" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/5e244b4d-9f09-4c3e-96c3-544d2d747d45">
+
   </li>
 </ul>
