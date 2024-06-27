@@ -12,9 +12,14 @@ import java.util.Map;
 public class PokeController {
     @Autowired
     PokeService pokeService;
-
+/*
     @GetMapping("{name}")
     public Map<String, String> getPokemonByName(@PathVariable String name){
         return pokeService.getPokemonByName(name);
+    }
+*/
+    @GetMapping("{name}")
+    public Map<String, String> getPokemonTokenByName(@PathVariable String name, String token){
+        return pokeService.getPokemonTokenByName(name, token);
     }
 }

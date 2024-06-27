@@ -1,12 +1,23 @@
 package com.testing.springboot.client.controllers;
 import com.testing.springboot.client.models.Message;
+import com.testing.springboot.client.services.PokeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 public class AppController {
+    @Autowired
+    PokeService pokeService;
+
+    @Autowired
+    PokeController pokeController;
+
     @GetMapping("/list")
     public List<Message> list(){
         return Collections.singletonList(new Message("Test list"));
@@ -22,7 +33,14 @@ public class AppController {
 * */
     @GetMapping("/authorized")
     public Map<String, String> authorized(@RequestParam String code){
-        return Collections.singletonMap("code", code);
+        String token = getToken(code); //Redirigir a pokemon/ditto, usando este token
+        Map<String, String> pokeMap= pokeController.getPokemonTokenByName("ditto", token);
+        return pokeMap;
     }
+
+    public String getToken(String code){
+        return pokeService.getToken(code);
+    }
+
 }
 

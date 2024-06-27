@@ -1,15 +1,7 @@
 package com.testing.springboot.client.models;
-
-import jakarta.persistence.*;
-
 import java.util.*;
 
-
-//@Entity
-//@Table(name="pokemon")
 public class PokeDex {
-    //@Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
     private Number id;
     private boolean is_default;
     private String location_area_encounters;
