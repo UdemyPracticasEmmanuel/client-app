@@ -8,8 +8,11 @@
   <li>Ir al navegador y teclear 'http://127.0.0.1:8080/oauth2/authorization/client-app', esto redireccionará al servidor de autenticación 'http://127.0.0.1:9000/login' <br>
   <img width="477" alt="img_1" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/68f9d1f0-57ce-42f2-9dac-254a04aeca70">
   </li>
-  <li>Ingresar las credenciales usuario: 'admin', password: '12345' , el usuario será redirigido al siguiente endpoint: <br>
-  <img width="477" alt="img_8" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/002ddf78-ba19-4b15-af52-e5b0683005f1"><br>
+  <li>Ingresar las credenciales usuario: 'admin', password: '12345' , el usuario será redirigido al siguiente endpoint que mostrará el token para ingresar desde Postman al pokemon deseado: <br>
+  <img width="552" alt="token" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/685f339b-adba-4d91-8adb-2705e6edba6e">
+    <br>
   </li>
-El cual mediante un servicio utiliza la URL http://127.0.0.1:9000/oauth2/token mediante POST, establece Authorization Type: 'Basic Auth', con username 'client-app' y password '12345', obtiene el 'access_token' necesario para solicitar a la API https://pokeapi.co/api/v2/pokemon/ los datos del pokemon 'ditto' y devuelve el resultado en pantalla en formato JSON.
+<p>Este endpoint, utiliza un servicio a través de la URL http://127.0.0.1:9000/oauth2/token con POST y Authorization Type: 'Basic Auth', username 'client-app' y password '12345', con el cuál obtiene el 'access_token' anteriormente mostrado en pantalla, el cuál es necesario para solicitar a la API https://pokeapi.co/api/v2/pokemon/ los datos del pokemon 'ditto' (o cualquier otro).</p>
+  <p>A continuación abrir Postman y estblecer Authorization Type: 'Bearer Token' y colocar el token recién obtenido:</p> <br>
+  <img width="506" alt="pokemon_solicitado_con_token" src="https://github.com/UdemyPracticasEmmanuel/client-app/assets/170979954/3f41bd9f-017d-45b6-b1a3-d8d853ad6067"><br>
 </ul>
