@@ -1,36 +1,67 @@
 package com.testing.springboot.client;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
+import com.testing.springboot.client.services.PokeService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
-import static org.assertj.core.api.Assertions.assertThat;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ClientAppApplicationTests {
-	@Autowired
-	TestRestTemplate restTemplate;
-/*
+	//TestRestTemplate restTemplate;
+	PokeService pokeService = new PokeService();
+
 	@Test
-	void shouldReturnAPokemon() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/pokemon/ditto", String.class);
+	void encryptStringTest() throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+		String ivString = "1234567890123456";
+		String secret = "UjXn2r5u8x/A?D(G";
+		String message = "Hello AES World!";
 
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+		byte[] encrypted = pokeService.encryptAes(message, ivString, secret);
+		System.out.println("Encrypted: " + encrypted.toString());
 
-		DocumentContext documentContext = JsonPath.parse(response.getBody());
-		String id = documentContext.read("$.id");
-		assertThat(id).isEqualTo("ditto");
+		//TODO: Decrypted en construcción
+		//System.out.println("Decrypted " + decryptAes(encrypted, ivString, secret));
 	}
-	@Test
-	void shouldNotReturnAPokemonWithAnUnknownId() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/pokemon/fuecoco", String.class);
 
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-		assertThat(response.getBody()).isBlank();
-	} */
+	@Test
+	void encryptNullMessageTest() throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+		String ivString = "1234567890123456";
+		String secret = "UjXn2r5u8x/A?D(G";
+		String message = "222";
+
+		byte[] encrypted = pokeService.encryptAes(message, ivString, secret);
+		System.out.println("Encrypted: " + encrypted.toString());
+
+	}
+
+	@Test
+	void pokemonExistTest(){
+		try{
+			String pokeName= "ditto";
+			Map<String, String> pokemon = pokeService.getPokemonByName(pokeName);
+			System.out.println(pokemon);
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	void pokemonDoesNotExistTest(){
+		try{
+			String pokeName= "lolo";
+			Map<String, String> pokemon = pokeService.getPokemonByName(pokeName);
+			System.out.println(pokemon);
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 }
