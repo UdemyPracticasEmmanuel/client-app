@@ -20,23 +20,22 @@ class ClientAppApplicationTests {
 	void encryptStringTest() throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		String ivString = "1234567890123456";
 		String secret = "UjXn2r5u8x/A?D(G";
-		String message = "Hello AES World!";
+		String message = "This is a test message";
 
-		byte[] encrypted = pokeService.encryptAes(message, ivString, secret);
-		System.out.println("Encrypted: " + encrypted.toString());
+		String encrypted = pokeService.encryptAes(message, ivString, secret);
+		System.out.println("Encrypted: " + encrypted);
 
-		//TODO: Decrypted en construcción
-		//System.out.println("Decrypted " + decryptAes(encrypted, ivString, secret));
+		System.out.println("Decrypted: " + pokeService.decryptAes(encrypted, ivString, secret));
 	}
 
 	@Test
 	void encryptNullMessageTest() throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		String ivString = "1234567890123456";
 		String secret = "UjXn2r5u8x/A?D(G";
-		String message = "222";
+		String message = null;
 
-		byte[] encrypted = pokeService.encryptAes(message, ivString, secret);
-		System.out.println("Encrypted: " + encrypted.toString());
+		String encrypted = pokeService.encryptAes(message, ivString, secret);
+		System.out.println(encrypted);
 
 	}
 

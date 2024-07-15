@@ -68,27 +68,32 @@ public class PokeService {
         return tokenResponse.getAccess_token();
     }
 
-    public byte[] encryptAes(String message, String ivString, String secret) throws UnsupportedEncodingException {
+    public String encryptAes(String message, String ivString, String secret) throws UnsupportedEncodingException {
         try {
             IvParameterSpec iv = new IvParameterSpec(ivString.getBytes("UTF-8"));
             SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes("UTF-8"), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, iv);
-            return cipher.doFinal(message.getBytes("UTF-8"));
+            byte[] encrypted = cipher.doFinal(message.getBytes());
+            return Base64.getEncoder().encodeToString(encrypted);
 
         }catch(Exception e){
-            return ("Resultado Encriptación" + e.getMessage()).getBytes("UTF-8");
+            return ("Resultado Encriptación: " + e.getMessage());
         }
     }
-    public String decryptAes(byte[] encrypted, String initVector, String key) throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    /**
+     * Función para desencriptar, solo funciona desde las pruebas unitarias en 'ClientAppApplicationTests.java'
+     */
+
+    public String decryptAes(String encrypted, String initVector, String key) throws UnsupportedEncodingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
         SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
 
-        byte[] original = cipher.doFinal(encrypted); //(Base64.getDecoder().decode(encrypted));
-        return new String(original);
+        byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypted));
+        return  new String(original);
     }
 
 

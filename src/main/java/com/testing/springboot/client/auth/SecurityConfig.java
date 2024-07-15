@@ -21,7 +21,6 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authHttp)->authHttp
                 .requestMatchers(HttpMethod.GET,"/authorized").permitAll()
                 .requestMatchers(HttpMethod.GET, "/pokemon/*").hasAnyAuthority("SCOPE_read", "SCOPE_write")
-                //.requestMatchers(HttpMethod.POST, "/pokemon/create").hasAuthority("SCOPE_write")
                 .anyRequest().authenticated())
                 .csrf(csrf->csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

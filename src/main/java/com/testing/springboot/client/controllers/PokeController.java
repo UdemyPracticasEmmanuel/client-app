@@ -44,8 +44,8 @@ public class PokeController {
 
     @GetMapping("/aes")
     public String encryptAes(@RequestParam String message) throws InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        byte[] encrypted = pokeService.encryptAes(message, ivString, secret);
-        System.out.println("Encrypted: " + encrypted.toString());
+        String encrypted = pokeService.encryptAes(message, ivString, secret);
+        System.out.println("Encrypted: " + encrypted);
 
         return new String(encrypted);
     }
@@ -61,11 +61,14 @@ public class PokeController {
         System.out.println("mensaje guardado: " + message);
         return message;
     }
-    //TODO: Decrypted en construcción
+    //TODO: Desarrollar método para desencriptar, a través de Postman
+    /*
     @GetMapping("/aes-2")
-    public String decryptAes(byte[] encrypted) throws InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        return pokeService.decryptAes(encrypted, ivString, secret);
+    public String decryptAes(@RequestParam String message) throws InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        return pokeService.decryptAes(message, ivString, secret);
     }
+
+     */
 
 
 }
